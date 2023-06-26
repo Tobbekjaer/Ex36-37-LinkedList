@@ -117,27 +117,27 @@ namespace ADTTest
             Assert.AreEqual("4: Kurt Nielsen (Male, 33 years)\n2: Bjørn Borg (Male, 30 years)\n3: Cristian Nielsen (Male, 20 years)\n1: Anders And (Male, 15 years)\n5: Lis Sørensen (Female, 18 years)", list.ToString());
         }
 
-        //[TestMethod]
-        //public void TestMixedElementTypes()
-        //{
-        //    Assert.AreEqual(null, list.First);
-        //    Assert.AreEqual(null, list.Last);
-        //    Assert.AreEqual(0, list.Count);
+        [TestMethod]
+        public void TestMixedElementTypes()
+        {
+            Assert.AreEqual(null, list.First);
+            Assert.AreEqual(null, list.Last);
+            Assert.AreEqual(0, list.Count);
 
-        //    list.Append(3);
-        //    list.Append("Hello World");
-        //    list.Append(c5);
-        //    list.Append(0.256);
+            list.Append(3);
+            list.Append("Hello World");
+            list.Append(c5);
+            list.Append(0.256);
 
-        //    Assert.AreEqual(3, list.First);
-        //    Assert.AreEqual(0.256, list.Last);
-        //    Assert.AreEqual(4, list.Count);
+            Assert.AreEqual(3, list.First);
+            Assert.AreEqual(0.256, list.Last);
+            Assert.AreEqual(4, list.Count);
 
-        //    Assert.AreEqual(3, list.ItemAt(0));
-        //    Assert.AreEqual("Hello World", list.ItemAt(1));
-        //    Assert.AreEqual(c5, list.ItemAt(2));
-        //    Assert.AreEqual(0.256, list.ItemAt(3));
-        //}
+            Assert.AreEqual(3, list.ItemAt(0));
+            Assert.AreEqual("Hello World", list.ItemAt(1));
+            Assert.AreEqual(c5, list.ItemAt(2));
+            Assert.AreEqual(0.256, list.ItemAt(3));
+        }
     }
 
 }
