@@ -81,13 +81,51 @@ namespace ADT
 
         public void DeleteAt(int index)
         {
+            Node current = head;
+            // If head is null return
+            if (head == null) {  return; }
 
+            // If we want to delete the head, just set the head to it's next value
+            if (index == 0) {
+                head = head.Next;
+                count--;
+                return;
+            }
+            else {
+                // Use current (head) as a temporary node an traverse to the node previous to the index  
+                for (int i = 0; i < index-1; i++) {
+                    while (current.Next != null) {
+                        current = current.Next;
+                        break;
+                    }
+                }
+                // Make currents next value the value of the next next element of the list
+                current.Next = current.Next.Next;
+                count--;
+            }
         }
 
-        //public object ItemAt(int index)
-        //{
+        public object ItemAt(int index)
+        {
+            object oItem;
+            Node current = head;
 
-        //}
+            if (index == 0) {
+                oItem = current.Data;
+            }
+            else if (index != 0) {
+                // Use current (head) as a temporary node an traverse to the node previous to the index  
+                for (int i = 0; i < index; i++) {
+                    while (current.Next != null) {
+                        current = current.Next;
+                        break;
+                    }
+                }
+            }
+            oItem = current.Data;
+
+            return oItem;
+        }
 
         public override string ToString()
         {
