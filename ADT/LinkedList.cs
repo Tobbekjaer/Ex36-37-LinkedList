@@ -22,6 +22,33 @@ namespace ADT
         {
             get { return count; }
         }
+        private object first;
+        public object First
+        {
+            get
+            {
+                if (head != null) {
+                    first = ItemAt(0);
+                } else {
+                    first = null;
+                }
+                return first;
+            }
+        }
+        private object last;
+
+        public object Last
+        {
+            get {
+                if(head != null) {
+                    last = ItemAt(count - 1);
+                } else {
+                    last = null; 
+                }           
+                return last;
+            }           
+        }
+
 
         public void InsertAt(int index, object o)
         {
@@ -125,6 +152,18 @@ namespace ADT
             oItem = current.Data;
 
             return oItem;
+        }
+
+        // Inserts an element at the beginning of the list 
+        public void Insert(object o)
+        {
+            InsertAt(0, o);
+        }
+
+        // Inserts an element at the end of the list 
+        public void Append(object o)
+        {
+            InsertAt(count, o);
         }
 
         public override string ToString()
