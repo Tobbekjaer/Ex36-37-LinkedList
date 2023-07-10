@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinkedListOfT
 {
-    public class LinkedList<T>
+    public class LinkedList<T> : IEnumerable
     {
         private class Node
         {
@@ -191,6 +191,49 @@ namespace LinkedListOfT
                 }
             }
             return allElements;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return new LinkedListEnumerator(head);
+        }
+
+        private class LinkedListEnumerator : IEnumerator
+        {
+            private Node _head;
+
+            private Node _position; 
+            
+            public LinkedListEnumerator(Node head)
+            {
+                _head = head;
+            }
+            public T Current
+            {
+                get
+                {
+                    try {
+                        return _head.Data; 
+                    }
+                    catch (IndexOutOfRangeException) {
+                        throw new InvalidOperationException();
+                    }
+                }
+            }
+            object IEnumerator.Current
+            {
+                get { return Current; }
+            }
+
+            public bool MoveNext()
+            {
+                _head = _head.Next;
+                return (_head.Next != null);
+            }
+            public void Reset()
+            {
+                _position.Next = _head; 
+            }
         }
 
     }
