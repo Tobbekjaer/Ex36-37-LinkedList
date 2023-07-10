@@ -201,7 +201,9 @@ namespace LinkedListOfT
         private class LinkedListEnumerator : IEnumerator
         {
             private Node _head;
-            // ... indsæt din kode her!
+
+            private Node _position; 
+            
             public LinkedListEnumerator(Node head)
             {
                 _head = head;
@@ -210,7 +212,12 @@ namespace LinkedListOfT
             {
                 get
                 {
-                    throw new NotImplementedException(); // <-- indsæt din kode her!
+                    try {
+                        return _head.Data; 
+                    }
+                    catch (IndexOutOfRangeException) {
+                        throw new InvalidOperationException();
+                    }
                 }
             }
             object IEnumerator.Current
@@ -220,11 +227,12 @@ namespace LinkedListOfT
 
             public bool MoveNext()
             {
-                throw new NotImplementedException(); // <-- indsæt din kode her!
+                _head = _head.Next;
+                return (_head.Next != null);
             }
             public void Reset()
             {
-                throw new NotImplementedException(); // <-- indsæt din kode her!
+                _position.Next = _head; 
             }
         }
 
