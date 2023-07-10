@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.Design;
+﻿using System.Collections;
+using System.ComponentModel.Design;
 using System.Reflection;
 
 namespace ADT
 {
-    public class LinkedList
+    public class LinkedList : IEnumerable
     {
         private class Node
         {
@@ -184,6 +185,46 @@ namespace ADT
                 }
             }
             return allElements;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return new LinkedListEnumerator(head);
+        }
+
+        private class LinkedListEnumerator : IEnumerator
+        {
+            private Node _head;
+            private Node _allwaysHead;
+            public LinkedListEnumerator(Node head)
+            {
+                _head = head;
+                _allwaysHead = head;
+            }
+            public object Current
+            {
+                get {
+                    try {
+                        return _head;
+                    }
+                    catch (IndexOutOfRangeException) {
+                        throw new InvalidOperationException();
+                    }
+                }
+            }
+
+            object IEnumerator.Current { get { return Current; } }
+
+            public bool MoveNext()
+            {
+                _head = _head.Next;
+                return ( _head.Next != null );
+            }
+
+            public void Reset()
+            {
+                _head.Next = _head;
+            }
         }
 
     }

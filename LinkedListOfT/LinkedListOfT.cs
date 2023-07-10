@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinkedListOfT
 {
-    public class LinkedList<T>
+    public class LinkedList<T> : IEnumerable
     {
         private class Node
         {
@@ -191,6 +191,41 @@ namespace LinkedListOfT
                 }
             }
             return allElements;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return new LinkedListEnumerator(head);
+        }
+
+        private class LinkedListEnumerator : IEnumerator
+        {
+            private Node _head;
+            // ... indsæt din kode her!
+            public LinkedListEnumerator(Node head)
+            {
+                _head = head;
+            }
+            public T Current
+            {
+                get
+                {
+                    throw new NotImplementedException(); // <-- indsæt din kode her!
+                }
+            }
+            object IEnumerator.Current
+            {
+                get { return Current; }
+            }
+
+            public bool MoveNext()
+            {
+                throw new NotImplementedException(); // <-- indsæt din kode her!
+            }
+            public void Reset()
+            {
+                throw new NotImplementedException(); // <-- indsæt din kode her!
+            }
         }
 
     }
